@@ -4,6 +4,8 @@ import fs from 'socket:fs/promises'
 import path from 'socket:path'
 import process from 'socket:process'
 
+console.log(process.cwd())
+
 async function checkAndReadFile(filePath) {
     try {
         await fs.access(filePath);
@@ -39,10 +41,10 @@ function parseJSONString(data) {
 
 async function init () {
     const cw = await getCurrentWindow()
-    let lastfile = localStorage.getItem('lasfile')
+    let lastfile = localStorage.lasfile
     if (!lastfile) {    
         const pick = await cw.showOpenFilePicker()
-        localStorage.setItem('lastfile', pick[0])
+        localStorage.lastfile = pick[0]
         lastfile = pick[0]
     }
     try {

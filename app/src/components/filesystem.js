@@ -8,17 +8,7 @@ class FileList extends HTMLElement {
         this._files = files;
         this.render();
         this.addEventListeners();
-    }
-
-    readFrom(directoryPath) {
-        // Implement your readFrom function here
-        console.log(`Reading from ${directoryPath}`);
-    }
-
-    openFile(filePath) {
-        // Implement your openFile function here
-        console.log(`Opening file ${filePath}`);
-    }
+    } 
 
     addEventListeners() {
         this.shadowRoot.querySelector('span[data-dir=".."]').addEventListener('click', () => {
@@ -26,8 +16,6 @@ class FileList extends HTMLElement {
         });
 
         this._files.forEach(file => {
-            console.log({file})
-            console.log(this.cwd, file.name)
             const f = this.join(this.cwd, file.name)
             this.shadowRoot.querySelector(`span[data-dir="${file.name}"]`).addEventListener('click', () => {
                 if (file.isDirectory) {
